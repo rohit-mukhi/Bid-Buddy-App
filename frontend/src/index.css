@@ -5,15 +5,16 @@
 }
 
 :root {
-  --dark-bg: #353535;
-  --teal: #3c6e71;
+  --dark-bg: #242424;
+  --teal: #00a8c4;
   --white: #ffffff;
-  --light-gray: #d9d9d9;
-  --dark-blue: #284b63;
-  --dark-card: #3f3f3f;
-  --dark-border: #4a4a4a;
-  --light-text: #ffffff;
-  --muted-text: #c0c0c0;
+  --light-gray: #e8e8e8;
+  --dark-blue: #1f3a52;
+  --dark-card: #2d2d2d;
+  --dark-border: #3a3a3a;
+  --light-text: #f5f5f5;
+  --muted-text: #b0b0b0;
+  --accent-gold: #d4af37;
 }
 
 body {
@@ -121,57 +122,12 @@ section {
 .card {
   border-radius: 12px;
   transition: all 0.3s ease;
-  background: var(--dark-card);
-  border: 2px solid var(--teal);
-  color: var(--light-text);
-}
-
-.card:hover {
-  box-shadow: 0 8px 20px rgba(60, 110, 113, 0.2);
-}
-
-.card-body {
-  color: var(--light-text);
-}
-
-.card-title {
-  color: var(--teal);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  line-height: 1.4;
-}
-
-.card-text {
-  color: var(--light-text);
-  font-size: 1rem;
-  line-height: 1.8;
-  letter-spacing: 0.3px;
 }
 
 /* Forms */
 .form-control {
   border-radius: 8px;
-  border: 2px solid var(--dark-blue);
-  padding: 0.75rem 1rem;
   transition: all 0.3s ease;
-  background: var(--dark-card);
-  color: var(--light-text);
-  font-size: 1rem;
-  line-height: 1.6;
-  letter-spacing: 0.3px;
-}
-
-.form-control:focus {
-  border-color: var(--teal);
-  box-shadow: 0 0 0 0.2rem rgba(60, 110, 113, 0.25);
-  background: var(--dark-card);
-  color: var(--light-text);
-}
-
-.form-control::placeholder {
-  color: var(--muted-text);
-  opacity: 0.8;
 }
 
 /* Badges */
@@ -179,10 +135,6 @@ section {
   border-radius: 20px;
   padding: 0.5rem 0.75rem;
   font-weight: 600;
-  background-color: var(--teal);
-  color: var(--white);
-  font-size: 0.875rem;
-  letter-spacing: 0.3px;
 }
 
 /* Utilities */

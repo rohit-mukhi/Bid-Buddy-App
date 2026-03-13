@@ -54,7 +54,11 @@ function App() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
-      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+      const menuElement = document.getElementById('navbarNav')
+      const hamburgerElement = document.querySelector('.hamburger-menu')
+      
+      if (menuElement && !menuElement.contains(event.target as Node) && 
+          hamburgerElement && !hamburgerElement.contains(event.target as Node)) {
         setIsOpen(false)
       }
     }
@@ -72,80 +76,77 @@ function App() {
 
   return (
     <>
-      {/* Navigation Header */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm" ref={navRef}>
-        <div className="container-fluid">
-          <a className="navbar-brand fw-bold" href="#" data-aos="fade-right">
-            Bid Buddy
-          </a>
-          <div className="hamburger-menu d-lg-none">
-            <Hamburger
-              toggled={isOpen}
-              toggle={setIsOpen}
-              color="#00a8c4"
-              size={24}
-            />
-          </div>
-          <div
-            className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}
-            id="navbarNav"
-          >
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item" data-aos="fade-left" data-aos-delay="100">
-                <a
-                  className="nav-link"
-                  href="#auctions"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Browse
-                </a>
-              </li>
-              <li className="nav-item" data-aos="fade-left" data-aos-delay="200">
-                <a
-                  className="nav-link"
-                  href="#how-it-works"
-                  onClick={() => setIsOpen(false)}
-                >
-                  How It Works
-                </a>
-              </li>
-              <li className="nav-item" data-aos="fade-left" data-aos-delay="300">
-                <a
-                  className="nav-link"
-                  href="#contact"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Contact
-                </a>
-              </li>
-              <li className="nav-item" data-aos="fade-left" data-aos-delay="400">
-                {session ? (
-                  <button className="btn btn-primary ms-2" onClick={() => signOut()}>
-                    Sign Out
-                  </button>
-                ) : (
-                  <button className="btn btn-primary ms-2" onClick={() => signInWithGoogle()}>
-                    Sign In
-                  </button>
-                )}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero Section */}
-      <section className="hero-section py-5 text-white text-center">
-        <div className="container py-5">
+      <section className="hero-section py-5 text-white text-center position-relative" ref={navRef}>
+        <div className="hamburger-menu position-absolute top-0 end-0 m-3 d-lg-none mt-4">
+          <Hamburger
+            toggled={isOpen}
+            toggle={setIsOpen}
+            color="#ffffff"
+            size={24}
+          />
+        </div>
+        <div
+          className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}
+          id="navbarNav"
+        >
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item" data-aos="fade-left" data-aos-delay="100">
+              <a
+                className="nav-link"
+                href="#auctions"
+                onClick={() => setIsOpen(false)}
+              >
+                Browse
+              </a>
+            </li>
+            <li className="nav-item" data-aos="fade-left" data-aos-delay="200">
+              <a
+                className="nav-link"
+                href="#how-it-works"
+                onClick={() => setIsOpen(false)}
+              >
+                How It Works
+              </a>
+            </li>
+            <li className="nav-item" data-aos="fade-left" data-aos-delay="300">
+              <a
+                className="nav-link"
+                href="#contact"
+                onClick={() => setIsOpen(false)}
+              >
+                Contact
+              </a>
+            </li>
+            <li className="nav-item" data-aos="fade-left" data-aos-delay="400">
+              {session ? (
+                <button className="btn btn-primary ms-2" onClick={() => signOut()}>
+                  Sign Out
+                </button>
+              ) : (
+                <button className="btn btn-primary ms-2" onClick={() => signInWithGoogle()}>
+                  Sign In
+                </button>
+              )}
+            </li>
+          </ul>
+        </div>
+        <div className="container py-5 mt-5">
           <div className="row align-items-center">
             <div className="col-lg-8 mx-auto">
               <h1 className="display-3 fw-bold mb-4" data-aos="fade-up">
-                Welcome to Bid Buddy
+                Bid Buddy
               </h1>
               <p className="lead mb-4" data-aos="fade-up" data-aos-delay="100">
                 The smart auction engine for finding amazing deals on items you love
               </p>
-              <button className="btn btn-light btn-lg px-5" data-aos="fade-up" data-aos-delay="200" onClick={() => signInWithGoogle()}>
+              <button className="btn btn-light btn-lg px-5" data-aos="fade-up" data-aos-delay="200" onClick={async () => {
+                try {
+                  await signInWithGoogle()
+                } catch (error) {
+                  console.error('Sign in error:', error)
+                }
+              }}>
                 Start Bidding Now
               </button>
             </div>
