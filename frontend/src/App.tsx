@@ -1,3 +1,5 @@
+import { useState, useEffect, useRef } from 'react'
+import Hamburger from 'hamburger-react'
 import './App.css'
 
 interface AuctionItem {
@@ -45,39 +47,72 @@ const featuredAuctions: AuctionItem[] = [
 ]
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false)
+  const navRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      document.addEventListener('touchstart', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+      document.removeEventListener('touchstart', handleClickOutside)
+    }
+  }, [isOpen])
+
   return (
     <>
       {/* Navigation Header */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm" ref={navRef}>
         <div className="container-fluid">
           <a className="navbar-brand fw-bold" href="#" data-aos="fade-right">
-            <span className="text-primary">Bid</span> Buddy
+            Bid Buddy
           </a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
+          <div className="hamburger-menu d-lg-none">
+            <Hamburger
+              toggled={isOpen}
+              toggle={setIsOpen}
+              color="#00a8c4"
+              size={24}
+            />
+          </div>
+          <div
+            className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}
+            id="navbarNav"
           >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item" data-aos="fade-left" data-aos-delay="100">
-                <a className="nav-link" href="#auctions">
+                <a
+                  className="nav-link"
+                  href="#auctions"
+                  onClick={() => setIsOpen(false)}
+                >
                   Browse
                 </a>
               </li>
               <li className="nav-item" data-aos="fade-left" data-aos-delay="200">
-                <a className="nav-link" href="#how-it-works">
+                <a
+                  className="nav-link"
+                  href="#how-it-works"
+                  onClick={() => setIsOpen(false)}
+                >
                   How It Works
                 </a>
               </li>
               <li className="nav-item" data-aos="fade-left" data-aos-delay="300">
-                <a className="nav-link" href="#contact">
+                <a
+                  className="nav-link"
+                  href="#contact"
+                  onClick={() => setIsOpen(false)}
+                >
                   Contact
                 </a>
               </li>
