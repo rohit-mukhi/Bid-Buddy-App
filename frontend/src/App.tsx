@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import Hamburger from 'hamburger-react'
+import { useAuth } from './context/AuthContext'
 import './App.css'
 
 interface AuctionItem {
@@ -49,22 +50,23 @@ const featuredAuctions: AuctionItem[] = [
 function App() {
   const [isOpen, setIsOpen] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
+  const { session, signInWithGoogle, signOut } = useAuth()
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
         setIsOpen(false)
       }
     }
 
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside)
-      document.addEventListener('touchstart', handleClickOutside)
+      document.addEventListener('mousedown', handleClickOutside as EventListener)
+      document.addEventListener('touchstart', handleClickOutside as EventListener)
     }
 
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside)
-      document.removeEventListener('touchstart', handleClickOutside)
+      document.removeEventListener('mousedown', handleClickOutside as EventListener)
+      document.removeEventListener('touchstart', handleClickOutside as EventListener)
     }
   }, [isOpen])
 
@@ -117,7 +119,15 @@ function App() {
                 </a>
               </li>
               <li className="nav-item" data-aos="fade-left" data-aos-delay="400">
-                <button className="btn btn-primary ms-2">Sign In</button>
+                {session ? (
+                  <button className="btn btn-primary ms-2" onClick={() => signOut()}>
+                    Sign Out
+                  </button>
+                ) : (
+                  <button className="btn btn-primary ms-2" onClick={() => signInWithGoogle()}>
+                    Sign In
+                  </button>
+                )}
               </li>
             </ul>
           </div>
@@ -135,7 +145,7 @@ function App() {
               <p className="lead mb-4" data-aos="fade-up" data-aos-delay="100">
                 The smart auction engine for finding amazing deals on items you love
               </p>
-              <button className="btn btn-light btn-lg px-5" data-aos="fade-up" data-aos-delay="200">
+              <button className="btn btn-light btn-lg px-5" data-aos="fade-up" data-aos-delay="200" onClick={() => signInWithGoogle()}>
                 Start Bidding Now
               </button>
             </div>
