@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Hamburger from 'hamburger-react'
 import { useAuth } from './context/AuthContext'
 import './App.css'
@@ -50,7 +51,20 @@ const featuredAuctions: AuctionItem[] = [
 function App() {
   const [isOpen, setIsOpen] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
+  const navigate = useNavigate()
   const { session, signInWithGoogle, signOut } = useAuth()
+
+  const handleStartBidding = async () => {
+    if (session) {
+      navigate('/home')
+    } else {
+      try {
+        await signInWithGoogle()
+      } catch (error) {
+        console.error('Sign in error:', error)
+      }
+    }
+  }
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
@@ -140,13 +154,12 @@ function App() {
               <p className="lead mb-4" data-aos="fade-up" data-aos-delay="100">
                 The smart auction engine for finding amazing deals on items you love
               </p>
-              <button className="btn btn-light btn-lg px-5" data-aos="fade-up" data-aos-delay="200" onClick={async () => {
-                try {
-                  await signInWithGoogle()
-                } catch (error) {
-                  console.error('Sign in error:', error)
-                }
-              }}>
+              <button 
+                className="btn btn-light btn-lg px-5" 
+                data-aos="fade-up" 
+                data-aos-delay="200" 
+                onClick={handleStartBidding}
+              >
                 Start Bidding Now
               </button>
             </div>
@@ -353,7 +366,12 @@ function App() {
               <p className="lead mb-4" data-aos="fade-up" data-aos-delay="100">
                 Join thousands of bidders on Bid Buddy and start winning amazing items today
               </p>
-              <button className="btn btn-light btn-lg px-5" data-aos="fade-up" data-aos-delay="200">
+              <button 
+                className="btn btn-light btn-lg px-5" 
+                data-aos="fade-up" 
+                data-aos-delay="200"
+                onClick={handleStartBidding}
+              >
                 Get Started Free
               </button>
             </div>

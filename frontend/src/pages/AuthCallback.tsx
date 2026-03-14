@@ -17,7 +17,7 @@ export default function AuthCallback() {
         }
 
         if (data.session) {
-          navigate('/')
+          navigate('/home')
         } else {
           setError('No session found')
         }

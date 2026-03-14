@@ -7,6 +7,9 @@ import 'aos/dist/aos.css'
 import './index.css'
 import App from './App.tsx'
 import AuthCallback from './pages/AuthCallback.tsx'
+import Home from './pages/Home.tsx'
+import AdminPanel from './pages/AdminPanel.tsx'
+import BiddingInterface from './pages/BiddingInterface.tsx'
 import { AuthProvider } from './context/AuthContext.tsx'
 
 AOS.init({
@@ -23,6 +26,9 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/bidding" element={<BiddingInterface />} />
         </Routes>
       </AuthProvider>
     </Router>
