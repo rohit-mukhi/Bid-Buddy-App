@@ -47,7 +47,7 @@ export default function Home() {
         <div className="row">
           <div className="col-lg-8 mx-auto">
             <h1 className="display-4 fw-bold mb-1 text-left" style={{ color: 'var(--teal)' }} data-aos="fade-down">
-              Choose Your Role
+              What are you up to today?
             </h1>
             <p className="lead mb-5 text-left" data-aos="fade-up" data-aos-delay="100">
               Welcome, {session?.user?.email?.split('@')[0]}
@@ -65,7 +65,7 @@ export default function Home() {
                 >
                   <div className="card-body text-center d-flex flex-column justify-content-center">
                     <div className="display-4 mb-3">📝</div>
-                    <h5 className="card-title" style={{ color: 'var(--teal)' }}>I want to Sell</h5>
+                    <h5 className="card-title" style={{ color: 'var(--teal)' }}>Auction an item</h5>
                     <p className="card-text text-muted mb-2">Create and manage auctions as a seller</p>
                   </div>
                 </div>
@@ -81,7 +81,7 @@ export default function Home() {
                 >
                   <div className="card-body text-center d-flex flex-column justify-content-center">
                     <div className="display-4 mb-3">💰</div>
-                    <h5 className="card-title" style={{ color: 'var(--teal)' }}>I want to Bid</h5>
+                    <h5 className="card-title" style={{ color: 'var(--teal)' }}>Place Bids</h5>
                     <p className="card-text text-muted mb-2">Browse and place bids on items</p>
                   </div>
                 </div>
@@ -90,6 +90,100 @@ export default function Home() {
           </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-dark text-white py-5">
+        <div className="container">
+          <div className="row mb-4">
+            <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up">
+              <h5 className="fw-bold mb-3">About</h5>
+              <ul className="list-unstyled">
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    About Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    Careers
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+              <h5 className="fw-bold mb-3">Support</h5>
+              <ul className="list-unstyled">
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    Help Center
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    Contact Us
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    FAQ
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+              <h5 className="fw-bold mb-3">Legal</h5>
+              <ul className="list-unstyled">
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    Cookie Policy
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="col-lg-3 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+              <h5 className="fw-bold mb-3">Follow Us</h5>
+              <ul className="list-unstyled">
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    Facebook
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    Twitter
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="text-white-50 text-decoration-none">
+                    Instagram
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <hr className="bg-white-50" />
+          <div className="row">
+            <div className="col-12 text-center">
+              <p className="text-white-50 mb-0">&copy; 2024 Bid Buddy. All rights reserved.</p>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }
