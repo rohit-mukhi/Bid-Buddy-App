@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import authRoutes from './api/routes/auth.js';
 import auctionRoutes from './api/routes/auctions.js';
 import createTables from './config/initDb.js';
+import { logPoolStats } from './config/poolMonitor.js';
 
 dotenv.config();
 
@@ -20,16 +21,20 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok' });
 });
 
+app.get('/health/pool', (req, res) => {
+  const stats = logPoolStats();
+  res.json({ status: 'ok', pool: stats });
+});
+
 // Initialize database tables
 createTables()
   .then(() => {
     app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
+      logPoolStats();
     });
   })
   .catch((error) => {
     console.error('Failed to initialize database:', error);
     process.exit(1);
   });
-
-

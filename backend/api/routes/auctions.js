@@ -1,7 +1,7 @@
 import express from 'express';
 import { verifyToken } from '../middleware/auth.js';
-import pool from '../config/database.js';
-import { uploadImage, deleteImage } from '../utils/cloudinaryHelper.js';
+import pool from '../../config/database.js';
+import { uploadImage, deleteImage } from '../../utils/cloudinaryHelper.js';
 
 const router = express.Router();
 
