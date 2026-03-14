@@ -1,0 +1,10 @@
+Next Steps:
+Install dependencies: cd backend && npm install
+
+Setup PostgreSQL (see SETUP_DATABASE.md)
+
+Create Cloudinary account and get credentials
+
+Update .env with your credentials
+
+Start server: npm start (auto-creates tables)

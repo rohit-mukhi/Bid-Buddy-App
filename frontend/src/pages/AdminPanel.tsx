@@ -33,7 +33,7 @@ export default function AdminPanel() {
 
             <div className="row g-4">
               <div className="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div className="card bg-dark-card border-secondary h-100">
+                <div className="card bg-dark-card border-secondary h-100" style={{ cursor: 'pointer' }} onClick={() => navigate('/admin/create-auction')}>
                   <div className="card-body">
                     <h5 className="card-title" style={{ color: 'var(--teal)' }}>
                       📝 Create Auction
@@ -47,7 +47,7 @@ export default function AdminPanel() {
               </div>
 
               <div className="col-md-6" data-aos="fade-up" data-aos-delay="300">
-                <div className="card bg-dark-card border-secondary h-100">
+                <div className="card bg-dark-card border-secondary h-100" style={{ cursor: 'pointer' }} onClick={() => navigate('/admin/manage-auctions')}>
                   <div className="card-body">
                     <h5 className="card-title" style={{ color: 'var(--teal)' }}>
                       📊 Manage Auctions

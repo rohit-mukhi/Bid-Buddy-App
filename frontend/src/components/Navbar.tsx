@@ -56,7 +56,8 @@ export default function Navbar({ showBackButton = false }: NavbarProps) {
               backgroundColor: 'rgba(45, 45, 45, 0.5)',
               backdropFilter: 'blur(10px)',
               zIndex: 1000,
-              animation: 'slideDown 0.3s ease-out'
+              animation: 'slideDown 0.3s ease-out',
+              borderRadius: '0 0 12px 12px'
             }}
           >
             <div className="container py-4">

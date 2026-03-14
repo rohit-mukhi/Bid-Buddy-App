@@ -10,6 +10,8 @@ import AuthCallback from './pages/AuthCallback.tsx'
 import Home from './pages/Home.tsx'
 import AdminPanel from './pages/AdminPanel.tsx'
 import BiddingInterface from './pages/BiddingInterface.tsx'
+import CreateAuction from './pages/CreateAuction.tsx'
+import ManageAuctions from './pages/ManageAuctions.tsx'
 import { AuthProvider } from './context/AuthContext.tsx'
 
 AOS.init({
@@ -28,6 +30,8 @@ createRoot(document.getElementById('root')!).render(
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/home" element={<Home />} />
           <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/admin/create-auction" element={<CreateAuction />} />
+          <Route path="/admin/manage-auctions" element={<ManageAuctions />} />
           <Route path="/bidding" element={<BiddingInterface />} />
         </Routes>
       </AuthProvider>
